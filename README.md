@@ -17,4 +17,21 @@
 Find the project report at https://www.overleaf.com/read/vkbfjtmdyzhx
 
 
+### Global
+
+## 1. Setup
+
+To run the file, you need to install the dependencies listed in the `requirements.txt` file:
+
+
+```
+$ pip install -r requirements.txt
+```
+
+Or you could create a virtual environment and install them on it:
+
+```
+$ mkvirtualenv -p python3 m5
+(m5) $ pip install -r requirements.txt
+
 ### VGG Summary
