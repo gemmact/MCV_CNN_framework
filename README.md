@@ -21,7 +21,8 @@ Find the project report at https://www.overleaf.com/read/vkbfjtmdyzhx
 
 ## 1. Setup
 
-To run the file, you need to install the dependencies listed in the `requirements.txt` file:
+To run the file, you need to install the dependencies listed in the 
+`requirements.txt` file:
 
 
 ```
@@ -33,5 +34,9 @@ Or you could create a virtual environment and install them on it:
 ```
 $ mkvirtualenv -p python3 m5
 (m5) $ pip install -r requirements.txt
+```
 
-### VGG Summary
+### 2. Summaries
+
+The summaries of the VGG and DenseNet papers can be found in the 
+`paper_summaries` directory within this project.
