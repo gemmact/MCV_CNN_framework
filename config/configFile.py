@@ -1,7 +1,7 @@
 # Problem type
-problem_type                = 'segmentation'  # Option: ['segmentation','classification','detection']
+problem_type                = 'detection'  # Option: ['segmentation','classification','detection']
 # Model
-model_type                  = 'FCN8'          # Options: ['DenseNetFCN', 'FCN8', 'FCN8atOnce' 'VGG16']
+model_type                  = 'VGG16'          # Options: ['DenseNetFCN', 'FCN8', 'FCN8atOnce' 'VGG16']
     ### DenseNetFCN options ####
 model_blocks                = 5               # Number of block densenetFCN_Custom only
 model_layers                = 4               # Number of layers per block densenetFCN_Custom only
@@ -31,7 +31,7 @@ load_weight_only            = True            # Recomended true, loads only weig
 basic_models_path           = './pretrained_models/' # Path for the basic models (ImageNet weights) where they will be download
     ### Save options
 save_weight_only            = True            # Recomended true, stores only weights and parameters
-model_name                  = 'FCN8'          # Name of the model to store
+model_name                  = 'VGG16'          # Name of the model to store
 output_model_path           = None            # Path to store the model using model_name [None uses the default experiment path]
 
 # Loss type
