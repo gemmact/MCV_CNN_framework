@@ -1,5 +1,5 @@
 # Problem type
-problem_type                = 'detection'  # Option: ['segmentation','classification','detection']
+problem_type                = 'classification'  # Option: ['segmentation','classification','detection']
 # Model
 model_type                  = 'VGG16'          # Options: ['DenseNetFCN', 'FCN8', 'FCN8atOnce' 'VGG16']
     ### DenseNetFCN options ####

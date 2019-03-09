@@ -93,6 +93,7 @@ def main():
     logger_debug.write('\n- Experiment finished: %ds ' % (total_time))
     logger_debug.write('\n')
 
+
 # Entry point of the script
 if __name__ == "__main__":
     main()

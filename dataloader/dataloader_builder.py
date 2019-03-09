@@ -12,8 +12,11 @@ from utils.transformations.composition import ComposeSemSeg, ComposeObjDet, Comp
 from utils.transformations.resize import Resize
 from fromFileDatasetSegmentation import fromFileDatasetSegmentation
 from fromFileDatasetClassification import fromFileDatasetClassification
+from fromPathDatasetClassification import fromPathDatasetClassification
 from fromFileDatasetDetection import fromFileDatasetDetection
 from fromFileDatasetToPredict import fromFileDatasetToPredict
+from fromPathDatasetToPredict import fromPathDatasetToPredict
+
 
 class Dataloader_Builder(object):
     def __init__(self, cf, model):
@@ -37,9 +40,14 @@ class Dataloader_Builder(object):
                                         self.cf.train_samples, self.cf.resize_image_train,
                                 preprocess=self.img_preprocessing, transform=self.train_transformation)
         elif self.cf.problem_type =='classification':
-            self.train_set = fromFileDatasetClassification(self.cf, self.cf.train_images_txt, self.cf.train_gt_txt,
-                                                      self.cf.train_samples, self.cf.resize_image_train,
-                                        preprocess=self.img_preprocessing, transform=self.train_transformation)
+            if self.cf.train_path is not None:
+                self.train_set = fromPathDatasetClassification(self.cf, self.cf.train_path, self.cf.resize_image_train,
+                                                               preprocess=self.img_preprocessing,
+                                                               transform=self.train_transformation)
+            else:
+                self.train_set = fromFileDatasetClassification(self.cf, self.cf.train_images_txt, self.cf.train_gt_txt,
+                                                          self.cf.train_samples, self.cf.resize_image_train,
+                                            preprocess=self.img_preprocessing, transform=self.train_transformation)
         elif self.cf.problem_type =='detection':
             self.train_set = fromFileDatasetDetection(self.cf, self.cf.train_images_txt, self.cf.train_gt_txt,
                                                       self.cf.train_samples, self.cf.resize_image_train,
@@ -47,7 +55,7 @@ class Dataloader_Builder(object):
                                                       transform=self.train_transformation,
                                                       box_coder=self.model.box_coder,
                                                       resize_process=self.resize)
-        self.train_loader = DataLoader(self.train_set, batch_size=self.cf.train_batch_size, num_workers=8)
+        self.train_loader = DataLoader(self.train_set, batch_size=self.cf.train_batch_size, num_workers=4)
 
     def build_valid(self, valid_samples, images_txt, gt_txt, resize_image, batch_size):
         if self.cf.problem_type == 'segmentation':
@@ -56,10 +64,15 @@ class Dataloader_Builder(object):
                                                           preprocess=self.img_preprocessing, transform=None,
                                                           valid=True)
         elif self.cf.problem_type == 'classification':
-            self.loader_set = fromFileDatasetClassification(self.cf, images_txt, gt_txt,
-                                                            valid_samples, resize_image,
-                                                            preprocess=self.img_preprocessing, transform=None,
-                                                            valid=True)
+            if self.cf.valid_path is not None:
+                self.loader_set = fromPathDatasetClassification(self.cf, self.cf.valid_path, resize_image,
+                                                                preprocess=self.img_preprocessing, transform=None,
+                                                                valid=True)
+            else:
+                self.loader_set = fromFileDatasetClassification(self.cf, images_txt, gt_txt,
+                                                                valid_samples, resize_image,
+                                                                preprocess=self.img_preprocessing, transform=None,
+                                                                valid=True)
         elif self.cf.problem_type == 'detection':
             self.train_transformation = ComposeObjDet([Resize(self.cf)])
             self.loader_set = fromFileDatasetDetection(self.cf, images_txt, gt_txt,
@@ -68,10 +81,14 @@ class Dataloader_Builder(object):
                                                        transform=None,
                                                        valid=True,
                                                        resize_process=self.resize)
-        self.loader = DataLoader(self.loader_set, batch_size=batch_size, num_workers=8)
+        self.loader = DataLoader(self.loader_set, batch_size=batch_size, num_workers=4)
 
     def build_predict(self):
-        self.predict_set = fromFileDatasetToPredict(self.cf, self.cf.test_images_txt,
-                                               self.cf.test_samples, self.cf.resize_image_test,
-                                               preprocess=self.img_preprocessing)
-        self.predict_loader = DataLoader(self.predict_set, batch_size=1, num_workers=8)
+        if self.cf.problem_type == 'classification' and self.cf.test_path is not None:
+            self.predict_set = fromPathDatasetToPredict(self.cf, self.cf.test_path, self.cf.resize_image_test,
+                                                   preprocess=self.img_preprocessing)
+        else:
+            self.predict_set = fromFileDatasetToPredict(self.cf, self.cf.test_images_txt,
+                                                   self.cf.test_samples, self.cf.resize_image_test,
+                                                   preprocess=self.img_preprocessing)
+        self.predict_loader = DataLoader(self.predict_set, batch_size=1, num_workers=4)

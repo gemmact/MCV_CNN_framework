@@ -16,6 +16,7 @@ from utils.messages import Messages
 from metrics.metrics import compute_accuracy, compute_confusion_matrix, extract_stats_from_confm, compute_mIoU
 from tensorboardX import SummaryWriter
 
+
 class SimpleTrainer(object):
     def __init__(self, cf, model):
         self.cf = cf
