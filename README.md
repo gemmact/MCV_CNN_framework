@@ -8,6 +8,7 @@
 - Sara Cela Alfonso (saracelalfonso@gmail.com)
 - Facundo Ferrin (facundo.ferrin@gmail.com)
 - Agustina Pose (aguupose@gmail.com)
+- Eric Marín (eric.marin.milla@gmail.com)
 
 ### Abstract
 
