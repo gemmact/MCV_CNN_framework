@@ -41,7 +41,7 @@ def main():
         # Dataloaders
         logger_debug.write('\n- Reading Train dataset: ')
         dataloader.build_train()
-        if cf.valid_images_txt is not None and cf.valid_gt_txt is not None and cf.valid_samples_epoch != 0:
+        if (cf.valid_path is not None or (cf.valid_images_txt is not None and cf.valid_gt_txt is not None)) and cf.valid_samples_epoch != 0:
             logger_debug.write('\n- Reading Validation dataset: ')
             dataloader.build_valid(cf.valid_samples_epoch, cf.valid_images_txt, cf.valid_gt_txt,
                                    cf.resize_image_valid, cf.valid_batch_size)
@@ -56,6 +56,7 @@ def main():
     if cf.validation:
         valid_time = time.time()
         model.net.eval()
+        print(cf.train)
         if not cf.train:
             logger_debug.write('- Reading Validation dataset: ')
             dataloader.build_valid(cf.valid_samples,cf.valid_images_txt, cf.valid_gt_txt,

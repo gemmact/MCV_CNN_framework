@@ -9,6 +9,7 @@ from metrics.metrics import compute_precision, compute_recall, compute_f1score, 
 from simple_trainer_manager import SimpleTrainer
 from utils.tools import confm_metrics2image
 
+
 class Classification_Manager(SimpleTrainer):
     def __init__(self, cf, model):
         super(Classification_Manager, self).__init__(cf, model)

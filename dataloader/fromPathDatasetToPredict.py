@@ -2,6 +2,7 @@ import os
 import numpy as np
 from dataloader import Data_loader
 
+
 class fromPathDatasetToPredict(Data_loader):
 
     def __init__(self, cf, path, resize,

@@ -22,6 +22,7 @@ class Dataloader_Builder(object):
     def __init__(self, cf, model):
         self.cf = cf
         self.model = model
+        self.loader_set = None
         # Compose preprocesing function for dataloaders
         if self.cf.problem_type == 'detection':
             self.img_preprocessing = standard_transforms.Compose([Random_distort(self.cf), preproces_input(self.cf),

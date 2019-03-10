@@ -20,18 +20,17 @@ class fromPathDatasetClassification(Data_loader):
 
         print("\t Images from {}".format(path))
 
+        print(cf.labels)
+        #cf.map_labels = {'background': 0, 'Car': 1, 'Van': 2, 'Truck': 3, 'Pedestrian': 4, 'Person_sitting': 5, 'Cyclist': 6, 'Tram': 7}
+        print(cf.map_labels)
         for label in cf.labels:
             for im in os.listdir(os.path.join(path, label)):
                 self.image_names.append(os.path.abspath(os.path.join(path, label, im)))
                 print(label)
                 print(cf.map_labels[label])
                 self.gt.append(int(cf.map_labels[label]))
-                #self.gt.append(label)
-
-        #le = LabelEncoder()
-        #le.fit(cf.labels)
-        #self.gt = le.transform(self.gt)
-
+        print(cf.labels)
+        print(cf.map_labels)
         self.num_images = len(self.image_names)
 
         print ("\t Images found: " + str(len(self.image_names)))
