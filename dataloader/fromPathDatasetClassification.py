@@ -2,6 +2,7 @@ import os
 import torch
 import numpy as np
 from dataloader import Data_loader
+#from sklearn.preprocessing import LabelEncoder
 
 
 class fromPathDatasetClassification(Data_loader):
@@ -22,7 +23,14 @@ class fromPathDatasetClassification(Data_loader):
         for label in cf.labels:
             for im in os.listdir(os.path.join(path, label)):
                 self.image_names.append(os.path.abspath(os.path.join(path, label, im)))
-                self.gt.append(label)
+                print(label)
+                print(cf.map_labels[label])
+                self.gt.append(int(cf.map_labels[label]))
+                #self.gt.append(label)
+
+        #le = LabelEncoder()
+        #le.fit(cf.labels)
+        #self.gt = le.transform(self.gt)
 
         self.num_images = len(self.image_names)
 

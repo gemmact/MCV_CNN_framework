@@ -6,6 +6,6 @@
 #SBATCH -o logs/%x_%u_%j.out # File to which STDOUT will be written
 #SBATCH -e logs/%x_%u_%j.err # File to which STDERR will be written
 
-python main.py --exp_name resnet152 --exp_folder ./experiments/ --config_file ./config/resnet152_bts.yml
+python main.py --exp_name resnet152 --exp_folder ./experiments/ --config_file ./config/resnet152_tt100k.yml
 
 

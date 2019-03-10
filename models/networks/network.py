@@ -70,7 +70,8 @@ class Net(nn.Module):
         if self.cf.model_type.lower() == 'ssd512':
             self.load_state_dict(torch.load(filename), strict=False)
         else:
-            self.load_state_dict2(torch.load(filename))
+            if os.path.exists(filename):
+                self.load_state_dict2(torch.load(filename))
 
     def load_state_dict2(self, pretrained_dict):
         model_dict = self.state_dict()
