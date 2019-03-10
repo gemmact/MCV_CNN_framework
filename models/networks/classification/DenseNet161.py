@@ -16,8 +16,8 @@ class DenseNet161(Net):
 
         if self.pretrained:
             self.model = models.densenet161(pretrained = True)
-            num_ftrs = self.model.fc.in_features
-            self.model.fc = nn.Linear(num_ftrs, num_classes)
+            num_ftrs = self.model.classifier.in_features
+            self.model.classifier = nn.Linear(num_ftrs, num_classes)
 
         self.model = models.densenet161(pretrained=False, num_classes=num_classes)
 
