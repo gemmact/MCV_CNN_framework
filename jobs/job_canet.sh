@@ -6,6 +6,6 @@
 #SBATCH -o logs/%x_%u_%j.out # File to which STDOUT will be written
 #SBATCH -e logs/%x_%u_%j.err # File to which STDERR will be written
 
-python main.py --exp_name VGG_16_kitti_nopretrain --exp_folder ./experiments/ --config_file ./config/vgg16_kitti_nopretrain.yml
+python main.py --exp_name caNet_1 --exp_folder ./experiments/ --config_file ./config/canet.yml
 
 
