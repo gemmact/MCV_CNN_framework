@@ -1,5 +1,7 @@
 import random
 import torchvision.transforms as transforms
+from PIL import Image
+from numpy import array
 
 class Random_distort(object):
     def __init__(self, cf):
@@ -39,6 +41,7 @@ class Random_distort(object):
             return img
 
         if self.cf.random_dist:
+            img = Image.fromarray(img)
             img = brightness(img, brightness_delta)
             if random.random() < 0.5:
                 img = contrast(img, contrast_delta)
@@ -48,4 +51,4 @@ class Random_distort(object):
                 img = saturation(img, saturation_delta)
                 img = hue(img, hue_delta)
                 img = contrast(img, contrast_delta)
-        return img
+        return array(img)

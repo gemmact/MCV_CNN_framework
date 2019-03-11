@@ -16,6 +16,7 @@ from models.networks.detection.ssd import SSD512
 from models.networks.classification.VGG16 import VGG16
 from models.networks.classification.DenseNet161 import DenseNet161
 from models.networks.classification.ResNet152 import ResNet152
+from models.networks.classification.caNET import caNET
 # from models.networks.detection.rpn import RPN
 from models.loss.loss_builder import Loss_Builder
 from models.optimizer.optimizer_builder import Optimizer_builder
@@ -67,6 +68,8 @@ class Model_builder():
         # classification networks
         elif self.cf.model_type.lower() == 'vgg16':
             self.net = VGG16(self.cf, num_classes=self.cf.num_classes, pretrained=self.cf.basic_pretrained_model).cuda()
+        elif self.cf.model_type.lower() == 'canet':
+            self.net = caNET(self.cf, num_classes=self.cf.num_classes, pretrained=self.cf.basic_pretrained_model).cuda()
         elif self.cf.model_type.lower() == 'densenet161':
             self.net = DenseNet161(self.cf, num_classes=self.cf.num_classes, pretrained=self.cf.basic_pretrained_model).cuda()
         elif self.cf.model_type.lower() == 'resnet152':
