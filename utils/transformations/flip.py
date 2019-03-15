@@ -8,8 +8,9 @@ class RandomHorizontalFlipSegSem(object):
 
     def __call__(self, img, gt):
         if self.cf.hflips and random.random() < 0.5:
-            if gt is not None:
-                return np.fliplr(img), np.fliplr(gt)
+            if type(gt) != type(None):
+              return np.fliplr(img), np.fliplr(gt)
+            return np.fliplr(img), None
         return img, gt
 
 class RandomHorizontalFlipObjDet(object):
