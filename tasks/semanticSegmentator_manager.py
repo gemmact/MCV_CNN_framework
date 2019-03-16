@@ -11,6 +11,7 @@ from metrics.metrics import compute_mIoU, compute_accuracy_segmentation, extract
 from simple_trainer_manager import SimpleTrainer
 from utils.save_images import save_img
 
+
 class SemanticSegmentation_Manager(SimpleTrainer):
     def __init__(self, cf, model):
         super(SemanticSegmentation_Manager, self).__init__(cf, model)

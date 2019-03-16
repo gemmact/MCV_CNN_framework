@@ -61,23 +61,28 @@ grayscale                   : False
 
 # Dataset properties
 
-train_images_txt: '/home/mcv/datasets/M5/segmentation/camvid/train_images.txt'
-train_gt_txt: '/home/mcv/datasets/M5/segmentation/camvid/train_labels.txt'
-valid_images_txt: '/home/mcv/datasets/M5/segmentation/camvid/val_images.txt'
-valid_gt_txt: '/home/mcv/datasets/M5/segmentation/camvid/val_labels.txt'
-test_images_txt: '/home/mcv/datasets/M5/segmentation/camvid/test_images.txt'
-test_gt_txt: '/home/mcv/datasets/M5/segmentation/camvid/test_labels.txt'
+train_path                  : null
+valid_path                  : null
+test_path                   : null
+train_images_txt: '/datatmp/Datasets/segmentation/cityscapes/train_images.txt'
+train_gt_txt: '/datatmp/Datasets/segmentation/cityscapes/train_labels.txt'
+valid_images_txt: '/datatmp/Datasets/segmentation/cityscapes/val_images.txt'
+valid_gt_txt: '/datatmp/Datasets/segmentation/cityscapes/val_labels.txt'
+test_images_txt: '/datatmp/Datasets/segmentation/cityscapes/val_images.txt'
+test_gt_txt: '/datatmp/Datasets/segmentation/cityscapes/val_labels.txt'
 
-labels                      : !!python/tuple ['sky', 'building', 'column_pole', 'road', 'sidewalk', 'tree', 'sign', 'fence', 'car', 'pedestrian', 'byciclist']
+labels                      : !!python/tuple ['road','sidewalk','building','wall','fence','pole','traffic light','traffic, sign',
+                                'vegetation','terrain','sky','person','rider','car','truck','bus','train',
+                                'motorcycle','bicycle']
 map_labels                  : null
 
-num_classes                 : 11
+num_classes                 : 19
 shuffle                     : True
-void_class                  : 11
+void_class                  : 255
 #void id or value on the image
 
 # Training
-epochs                      : 50
+epochs                      : 80
 #Max number of epochs
 initial_epoch: 1
 #Defines the starting epoch number
@@ -110,7 +115,7 @@ early_stopping : False
 stop_condition: 'valid_mIoU'
 # [(x)_loss','(x)_mAcc','(x)_mIoU'] x : valid or train_loss
 patience: 5
-
+F
 # Image preprocess
 rescale                     : 1. #0.003921569
 mean                        : !!python/tuple [127.5, 127.5, 127.5]
