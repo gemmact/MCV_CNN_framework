@@ -4,6 +4,12 @@ import sys
 import json
 import copy
 
+from models.networks.segmentation.segnet import SegNet
+from models.networks.segmentation.segresnet import SegResNet
+from models.networks.segmentation.mobilenet import MobileNetV2
+from models.networks.segmentation.unet import Unet
+from models.networks.segmentation.psp import PSP_Resnet50_8s
+
 sys.path.append('../')
 from models.networks.segmentation.FCN8 import FCN8
 from models.networks.segmentation.FCN8AtOnce import FCN8AtOnce
@@ -14,9 +20,6 @@ from models.networks.segmentation.deeplabv2_resnet import MS_Deeplab
 from models.networks.detection.ssd import SSD300
 from models.networks.detection.ssd import SSD512
 from models.networks.classification.VGG16 import VGG16
-from models.networks.classification.DenseNet161 import DenseNet161
-from models.networks.classification.ResNet152 import ResNet152
-from models.networks.classification.caNET import caNET
 # from models.networks.detection.rpn import RPN
 from models.loss.loss_builder import Loss_Builder
 from models.optimizer.optimizer_builder import Optimizer_builder
@@ -56,6 +59,16 @@ class Model_builder():
             self.net = DeepLabv3_xception(self.cf, n_classes=self.cf.num_classes, pretrained=self.cf.basic_pretrained_model).cuda()
         elif self.cf.model_type.lower() == 'deeplabv2':
             self.net = MS_Deeplab(self.cf, n_classes=self.cf.num_classes, pretrained=self.cf.basic_pretrained_model).cuda()
+        elif self.cf.model_type.lower() == 'segresnet':
+            self.net = SegResNet(num_classes=self.cf.num_classes, pretrained_net=self.cf.basic_pretrained_model).cuda()
+        elif self.cf.model_type.lower() == 'segnet':
+            self.net = SegNet(self.cf, num_classes=self.cf.num_classes, pretrained=self.cf.basic_pretrained_model).cuda()
+        elif self.cf.model_type.lower() == 'mobilenet':
+            self.net = MobileNetV2(self.cf, num_classes=self.cf.num_classes, pretrained=self.cf.basic_pretrained_model).cuda()
+        elif self.cf.model_type.lower() == 'unet':
+            self.net = Unet(self.cf, num_classes=self.cf.num_classes, pretrained=self.cf.basic_pretrained_model).cuda()
+        elif self.cf.model_type.lower() == 'pspnet':
+            self.net = PSP_Resnet50_8s(self.cf, num_classes=self.cf.num_classes, pretrained=self.cf.basic_pretrained_model).cuda()
         # object detection networks
         # elif self.cf.model_type.lower() == 'rpn':
         #     self.net = RPN(self.cf, 512)
@@ -68,12 +81,6 @@ class Model_builder():
         # classification networks
         elif self.cf.model_type.lower() == 'vgg16':
             self.net = VGG16(self.cf, num_classes=self.cf.num_classes, pretrained=self.cf.basic_pretrained_model).cuda()
-        elif self.cf.model_type.lower() == 'canet':
-            self.net = caNET(self.cf, num_classes=self.cf.num_classes, pretrained=self.cf.basic_pretrained_model).cuda()
-        elif self.cf.model_type.lower() == 'densenet161':
-            self.net = DenseNet161(self.cf, num_classes=self.cf.num_classes, pretrained=self.cf.basic_pretrained_model).cuda()
-        elif self.cf.model_type.lower() == 'resnet152':
-            self.net = ResNet152(self.cf, num_classes=self.cf.num_classes, pretrained=self.cf.basic_pretrained_model).cuda()
         else:
             raise ValueError('Unknown model')
 
