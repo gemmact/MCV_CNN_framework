@@ -11,6 +11,7 @@ from metrics.metrics import compute_mIoU, compute_accuracy_segmentation, extract
 from simple_trainer_manager import SimpleTrainer
 from utils.save_images import save_img
 
+
 class SemanticSegmentation_Manager(SimpleTrainer):
     def __init__(self, cf, model):
         super(SemanticSegmentation_Manager, self).__init__(cf, model)
@@ -75,7 +76,7 @@ class SemanticSegmentation_Manager(SimpleTrainer):
                 self.writer.add_scalar('metrics/accuracy', 100.*self.stats.train.acc, epoch)
                 self.writer.add_scalar('metrics/mIoU', 100.*self.stats.train.mIoU, epoch)
                 conf_mat_img = confm_metrics2image(self.stats.train.get_confm_norm(), self.cf.labels)
-                self.writer.add_image('metrics/conf_matrix', conf_mat_img, epoch)
+                #self.writer.add_image('metrics/conf_matrix', conf_mat_img, epoch)
 
     class validation(SimpleTrainer.validation):
         def __init__(self, logger_stats, model, cf, stats, msg):
@@ -105,7 +106,7 @@ class SemanticSegmentation_Manager(SimpleTrainer):
                 self.writer.add_scalar('metrics/accuracy', 100.*self.stats.val.acc, epoch)
                 self.writer.add_scalar('metrics/mIoU', 100.*self.stats.val.mIoU, epoch)
                 conf_mat_img = confm_metrics2image(self.stats.val.get_confm_norm(), self.cf.labels)
-                self.writer.add_image('metrics/conf_matrix', conf_mat_img, epoch)
+                #self.writer.add_image('metrics/conf_matrix', conf_mat_img, epoch)
             else:
                 self.logger_stats.write('----------------- Scores summary -------------------- \n')
                 self.logger_stats.write('[val loss %.5f], [acc %.2f], [mean_IoU %.2f]\n' % (

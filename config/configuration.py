@@ -37,6 +37,7 @@ class Configuration():
         cf.exp_folder = os.path.join(cf.exp_folder, cf.exp_name)
         cf.tensorboard_path = os.path.join(cf.exp_folder,'tensorboard/')
         cf.debug = self.args.debug
+        cf.silent = self.args.silent
         cf.log_file = os.path.join(cf.exp_folder, "logfile.log")
         cf.log_file_stats = os.path.join(cf.exp_folder, "logfile_stats.log")
         cf.log_file_debug = os.path.join(cf.exp_folder, "logfile_debug.log")
@@ -65,7 +66,7 @@ class Configuration():
             if not os.path.exists(cf.output_model_path):
                 os.makedirs(cf.output_model_path)
         if cf.map_labels is None:
-            cf.map_labels = {value: idx for idx, value in enumerate(cf.map_labels)}
+            cf.map_labels = {value: idx for idx, value in enumerate(cf.labels)}
         # if cf.pretrained_model is None:
         #     cf.pretrained_model = 'None'
         if not cf.pretrained_model.lower() in ('none', 'basic', 'custom'):
@@ -105,6 +106,11 @@ class Configuration():
                             dest='debug',
                             action='store_true',
                             help="experiment mode")
+
+        parser.add_argument("--silent",
+                            dest='silent',
+                            action='store_true',
+                            help="do not show progress bar in case you do not have access to stdout")
 
         # Model
         parser.add_argument("--model", dest='model_type',
