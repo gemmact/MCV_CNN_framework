@@ -1,0 +1,7 @@
+classes= 3
+train  = /home/grupo04/m5/facu/MCV_CNN_framework/udacity_train_labels.txt
+valid  = /home/grupo04/m5/facu/MCV_CNN_framework/udacity_valid_labels.txt
+difficult = /home/grupo04/m5/facu/MCV_CNN_framework/udacity_test_labels.txt
+names = data/voc.names
+backup = backup
+
