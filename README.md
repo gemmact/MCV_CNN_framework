@@ -22,6 +22,16 @@ FCN and implement SegNet, a state-of-the-art network for semantic segmentation.
 We train both networks from scratch and from pretrained weights, over `camvid` 
 and `kitti` datasets and boost their performance using different techniques.
 
+#### Week 4
+This week's main task was to implement an object detection network and evaluate 
+performance in different datasets. Since the framework does not yet support this 
+type of network, we used the repository of an already implemented YOLO network. 
+You can find this repository in the `external' folder or in this 
+[link](https://github.com/AlexeyAB/darknet). 
+
+As every two weeks, we offer the summary of two articles on this topic that you 
+can find inside the folder `paper_summaries`.
+
 ### Code
 
 In the `config` folder we define some configuration files for the different 
@@ -29,6 +39,9 @@ architectures.
 
 In the`job` folder we define the configuration files for the jobs to run the 
 script with the architectures listed in `config` folder.
+
+`paper_summaries` folder contain the summary of two papers for every type of
+network that we used.
 
 And in the `models` folder we update some files to add the configuration of our 
 custom CNN, CaNet. 
@@ -66,6 +79,26 @@ $ sbatch <job_file>
 ```
 
 
+## Week 4
+
+### Completeness of the tasks
+
+The status of the tasks for this week are:
+
+- [X] Train an existing object detection network 
+- [X] Read and summarize two papers
+- [X] Train the network for another dataset
+- [X] Boost the performance of your network
+- [X] Report + slides showing the achieved results 
+
+### Presentation
+
+In the following links you can find the 
+[report](https://www.overleaf.com/read/qcfvbbgcrjfq) and 
+[presentation](https://docs.google.com/presentation/d/1cgN1IeviTxtlPYSLyiDImsOqivyF8VM8kW_wCJrUytM/edit#slide=id.g558f7df010_0_256) 
+of this week.
+
+
 ## Week 3
 
 ### Completeness of the tasks
@@ -83,7 +116,8 @@ The status of the tasks for this week are:
 
 In the following links you can find the 
 [report](https://www.overleaf.com/7622391142xnsbbbqtwhcd) and 
-[presentation](https://docs.google.com/presentation/d/1fQPXDX5Zbv6USf3_KzVRJtGdBBPlMBIELjMuLztm_iE/edit?usp=sharing) of this week.
+[presentation](https://docs.google.com/presentation/d/1fQPXDX5Zbv6USf3_KzVRJtGdBBPlMBIELjMuLztm_iE/edit?usp=sharing) 
+of this week.
 
 
 ## Week 2
