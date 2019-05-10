@@ -138,7 +138,7 @@ The status of the tasks for this week are:
 
 In the following links you can find the 
 [report](https://www.overleaf.com/read/vkbfjtmdyzhx) and 
-[presentation](https://docs.google.com/presentation/d/1tIR7rUTIOYBaxHLb54Pd-k5w8MQDtI4VkjEBJwylSKo/edit?usp=sharing) of this week.
+[presentation](https://docs.google.com/presentation/d/1N-bBVhSZk_i_b0ar4wIW-FT0C_mkbmTev4YtfNO8FMQ/edit?usp=sharing) of this week.
 
 ### Weights of the models
 
